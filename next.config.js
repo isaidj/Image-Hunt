@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: [
+      "localhost",
+      "res.cloudinary.com",
+      "images.unsplash.com",
+      "pbs.twimg.com",
+    ],
+  },
 
-module.exports = nextConfig
+  env: {
+    KEY_UNPLASH: process.env.KEY_UNPLASH,
+  },
+};
+
+module.exports = nextConfig;
