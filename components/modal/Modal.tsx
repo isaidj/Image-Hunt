@@ -44,7 +44,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     >
       <div
         ref={wrapper}
-        className="relative rounded-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 overflow-hidden"
+        className="relative rounded-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 overflow-hidden backdrop-filter backdrop-blur-lg"
       >
         {children}
       </div>

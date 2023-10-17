@@ -38,7 +38,7 @@ export default function PhotoModal({
         className="w-full object-cover aspect-square col-span-2"
       />
 
-      <div className="backdrop-filter backdrop-blur-lg  p-4 px-6 ">
+      <div className="  p-4 px-6 ">
         <div className="flex justify-between w-full ">
           <h3>{upperFirstLetter(image.alt_description)}</h3>
           <DownloadButton image={image} />

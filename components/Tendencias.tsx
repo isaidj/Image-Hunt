@@ -134,7 +134,7 @@ export const TendenciasHorizontal = ({
     <div
       ref={ref}
       id="scroll_horizontal_menu"
-      className=" flex sm:hidden flex-col space-y-4 sm:max-w-xs after:absolute after:content-['.'] after:text-transparent after:right-0 after:w-32 after:bg-gradient-to-r from-transparent to-black after:z-10 overflow-x-scroll scrollbar-hide"
+      className=" flex mt-3 sm:hidden flex-col space-y-4 sm:max-w-xs after:absolute after:content-['.'] after:text-transparent after:right-0 after:w-32 after:bg-gradient-to-r from-transparent to-black after:z-10 overflow-x-scroll scrollbar-hide"
     >
       <div className="flex flex-row items-start gap-7 ml-3">
         {Object.keys(list_tendencias).map((key, index) => (
