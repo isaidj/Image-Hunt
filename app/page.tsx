@@ -106,6 +106,14 @@ export default function ImageHuntPage() {
           </div>
         </div>
       </div>
+      <div className="w-full flex flex-col items-center justify-center mt-4">
+        <h2 className="text-sm text-center text-zinc-300">
+          Made with ❤️ by Isaí Hernández
+        </h2>
+        <h2 className="text-sm text-center text-zinc-300">
+          © 2023 All rights reserved
+        </h2>
+      </div>
     </main>
   );
 }
