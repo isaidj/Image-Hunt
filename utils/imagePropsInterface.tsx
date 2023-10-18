@@ -1,4 +1,4 @@
-export interface ImageProps {
+export default interface ImageProps {
   id: string;
   slug: string;
   created_at: string;

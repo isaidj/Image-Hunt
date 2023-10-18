@@ -44,7 +44,7 @@ const DownloadButton = ({ image }: { image: ImageProps }) => {
   return (
     <div
       onClick={handleOpen}
-      className="relative flex items-center cursor-pointer border-2 border-neutral-800 bg-black rounded-lg  text-white text-center hover:bg-opacity-20 p-2"
+      className="relative w-fit flex items-center cursor-pointer border-2 border-neutral-800 bg-black rounded-lg  text-white text-center hover:bg-opacity-20 p-2"
     >
       <div className="ml-2">Download</div>{" "}
       <IconDown

@@ -1,6 +1,65 @@
 "use client";
 import React from "react";
 
+const Tendencias = ({ onSearch }: { onSearch: (value: string) => void }) => {
+  return (
+    <div className="flex flex-col items-start gap-7 ml-2">
+      {Object.keys(list_tendencias).map((key, index) => (
+        <div key={index}>
+          <h2 className="font-medium text-sm">{key}</h2>
+          <div className="flex flex-col items-start ml-2 border-l-2 border-gray-600 pl-2">
+            {list_tendencias[key as keyof typeof list_tendencias].map(
+              (item, index) => (
+                <label
+                  key={index}
+                  onClick={(e) => {
+                    onSearch(item.value);
+                  }}
+                  className="font-light text-xs text-slate-200 border-b-2 border-transparent cursor-pointer whitespace-nowrap  hover:text-gray-400 hover:border-b-2 hover:border-gray-600 transition duration-300"
+                >
+                  {item.label}
+                </label>
+              )
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+export const TendenciasHorizontal = ({
+  onSearch,
+}: {
+  onSearch: (value: string) => void;
+}) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={ref}
+      id="scroll_horizontal_menu"
+      className=" flex mt-3 sm:hidden flex-col space-y-4 sm:max-w-xs after:absolute after:content-['.'] after:text-transparent after:right-0 after:w-32 after:bg-gradient-to-r from-transparent to-black after:z-10 overflow-x-scroll scrollbar-hide"
+    >
+      <div className="flex flex-row items-start gap-7 ml-3">
+        {Object.keys(list_tendencias).map((key, index) => (
+          <label
+            key={index}
+            onClick={(e) => {
+              console.log(key);
+              onSearch(key.toLowerCase());
+            }}
+            className="text-slate-200 border-b-2 border-transparent cursor-pointer whitespace-nowrap  hover:text-gray-400 hover:border-b-2 hover:border-gray-600 transition duration-300"
+          >
+            {key}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Tendencias;
+
 const list_tendencias = {
   Countries: [
     { label: "Iceland", value: "iceland" },
@@ -81,77 +140,3 @@ const list_tendencias = {
     { label: "Volleyball", value: "volleyball" },
   ],
 };
-
-const Tendencias = ({ onSearch }: { onSearch: (value: string) => void }) => {
-  return (
-    <div className="flex flex-col items-start gap-7 ml-2">
-      {Object.keys(list_tendencias).map((key, index) => (
-        <div key={index}>
-          <h2 className="font-medium text-sm">{key}</h2>
-          <div className="flex flex-col items-start ml-2 border-l-2 border-gray-600 pl-2">
-            {list_tendencias[key as keyof typeof list_tendencias].map(
-              (item, index) => (
-                <label
-                  key={index}
-                  onClick={(e) => {
-                    onSearch(item.value);
-                  }}
-                  className="font-light text-xs text-slate-200 border-b-2 border-transparent cursor-pointer whitespace-nowrap  hover:text-gray-400 hover:border-b-2 hover:border-gray-600 transition duration-300"
-                >
-                  {item.label}
-                </label>
-              )
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-export const TendenciasHorizontal = ({
-  onSearch,
-}: {
-  onSearch: (value: string) => void;
-}) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  const onRightScroll = () => {
-    console.log("right");
-    ref.current?.scrollBy({
-      left: 100,
-      behavior: "smooth",
-    });
-  };
-  const onLeftScroll = () => {
-    console.log("left");
-    ref.current?.scrollBy({
-      left: -100,
-      behavior: "smooth",
-    });
-  };
-
-  return (
-    <div
-      ref={ref}
-      id="scroll_horizontal_menu"
-      className=" flex mt-3 sm:hidden flex-col space-y-4 sm:max-w-xs after:absolute after:content-['.'] after:text-transparent after:right-0 after:w-32 after:bg-gradient-to-r from-transparent to-black after:z-10 overflow-x-scroll scrollbar-hide"
-    >
-      <div className="flex flex-row items-start gap-7 ml-3">
-        {Object.keys(list_tendencias).map((key, index) => (
-          <label
-            key={index}
-            onClick={(e) => {
-              console.log(key);
-              onSearch(key.toLowerCase());
-            }}
-            className="text-slate-200 border-b-2 border-transparent cursor-pointer whitespace-nowrap  hover:text-gray-400 hover:border-b-2 hover:border-gray-600 transition duration-300"
-          >
-            {key}
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default Tendencias;

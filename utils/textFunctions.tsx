@@ -3,4 +3,11 @@ export const upperFirstLetter = (text: string) => {
   return firstLetter;
 };
 
-console.log(upperFirstLetter("hola como estas?"));
+export const extractTextAfterLastCharacter = (
+  character: string,
+  text: string
+) => {
+  const lastCharacter = text.lastIndexOf(character);
+  const result = text.substring(lastCharacter + 1);
+  return result;
+};
