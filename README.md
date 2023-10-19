@@ -11,7 +11,7 @@ First, install the dependencies:
 npm install
 ```
 
-Create and configure a `.env.local` file with the following variables:
+Create and configure a `.env.local or .env` file with the following variables:
 
 ```bash
 KEY_UNPLASH=YOUR_KEY
