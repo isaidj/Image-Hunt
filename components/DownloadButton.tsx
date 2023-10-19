@@ -38,7 +38,7 @@ const DownloadButton = ({ image }: { image: ImageProps }) => {
         })
         .catch((e) => console.error(e));
     };
-    downloadFile(imgUrl, "image.jpg");
+    downloadFile(imgUrl, image.slug + ".jpg");
   };
 
   return (

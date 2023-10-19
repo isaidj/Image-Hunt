@@ -6,6 +6,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "images.unsplash.com",
       "pbs.twimg.com",
+      "s3.us-west-2.amazonaws.com",
     ],
   },
 

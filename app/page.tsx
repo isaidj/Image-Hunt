@@ -1,11 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useImages } from "@/hooks/useUnplash";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import ImageProps from "@/utils/imagePropsInterface";
-import Link from "next/link";
+
 import Tendencias, { TendenciasHorizontal } from "@/components/Tendencias";
 import styles from "../components/cards.module.css";
+
+import Nav from "@/components/Nav";
+import ImagesSection from "@/components/sections/ImageSection";
 
 export default function ImageHuntPage() {
   // ----------------State and hooks-------------------------------
@@ -32,50 +34,20 @@ export default function ImageHuntPage() {
     if (input === "") {
       params.delete("search");
     }
-    // window.history.replaceState({}, "", `${pathName}?${params.toString()}`);
     router.push(`${pathName}?${params.toString()}`);
   };
   const handleTrend = (value: string) => {
     setInput(value);
+    setPage(1);
+    const params = new URLSearchParams();
+    params.append("search", value);
+    router.push(`${pathName}?${params.toString()}`);
   };
 
   //------------------Render----------------------------------
   return (
     <main id="imagehunt" className={"flex flex-col space-y-4"}>
-      <div
-        className={
-          " z-10 flex flex-col items-center justify-between h-16 sticky top-0 bg-gray-950 p-2 md:flex-row md:justify-around md:items-center backdrop-filter backdrop-blur-lg bg-opacity-50"
-        }
-      >
-        <a
-          className="text-2xl  text-white font-extralight whitespace-nowrap"
-          href="/"
-        >
-          Image Hunt
-        </a>
-
-        <form onSubmit={handleSubmmit}>
-          <div className="flex items-center justify-center">
-            <input
-              type="text"
-              name="input-text"
-              id="input-text"
-              color="default"
-              placeholder="Search for images ..."
-              defaultValue={input}
-              className=" bg-gray-950 text-white font-bold p-2 rounded-lg border border-gray-700 rounded-tr-none rounded-br-none border-r-0 focus:outline-none focus:ring-1 focus:ring-primary"
-            />
-            <button
-              className={
-                "bg-gray-950 text-white font-bold p-2 rounded-lg hover:bg-gray-900 border border-gray-700 rounded-tl-none rounded-bl-none border-l-0"
-              }
-              type="submit"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
+      <Nav input={input} handleSubmmit={handleSubmmit} />
       <div>
         <TendenciasHorizontal onSearch={(value) => handleTrend(value)} />
       </div>
@@ -110,45 +82,3 @@ export default function ImageHuntPage() {
     </main>
   );
 }
-
-const ImagesSection = ({
-  images,
-  loading,
-}: {
-  images: ImageProps[];
-  loading: boolean;
-}) => {
-  if (loading) {
-    return <Skeleton count={8} height={400} width={"100%"} />;
-  }
-  if (loading === false && images.length === 0) {
-    return <h1>No hay resultados</h1>;
-  }
-  return images.map((img, index) => {
-    return (
-      <Link key={img.id} href={`/photos/${img.slug}`} scroll={false}>
-        <img
-          src={img.urls.small}
-          className="card mb-3  relative rounded-2xl cursor-pointer"
-          alt={img.alt_description}
-        />
-      </Link>
-    );
-  });
-};
-
-const Skeleton = ({ count, height, width }: any) => {
-  return (
-    <>
-      {Array(count)
-        .fill("")
-        .map((_, i) => (
-          <div
-            key={i}
-            className="card mb-3  relative rounded-2xl cursor-pointer animate-pulse bg-gray-900"
-            style={{ height, width }}
-          />
-        ))}
-    </>
-  );
-};

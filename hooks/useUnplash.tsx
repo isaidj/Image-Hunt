@@ -8,10 +8,11 @@ import axios from "axios";
 
 export function useImages(
   search: string | undefined,
-  page: number
+  page: number,
+  per_page: number = 20
 ): { images: ImageProps[]; loading: boolean; hasMore: boolean } {
   const [images, setImages] = useState<ImageProps[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [hasMore, setHasMore] = useState<boolean>(false);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export function useImages(
   const params: Record<string, any> = {
     client_id: key_unsplash,
     page: page,
-    per_page: 20,
+    per_page: per_page,
   };
 
   if (search !== "") {
@@ -61,7 +62,40 @@ export function useImages(
 
   return { images, loading, hasMore };
 }
-//useImages of unplash
+
+export function useImagesRelated(
+  id: string,
+  page: number = 1,
+  per_page: number = 4
+): { images: ImageProps[]; loading: boolean } {
+  const [images, setImages] = useState<ImageProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [hasMore, setHasMore] = useState<boolean>(false);
+  useEffect(() => {
+    setLoading(true);
+    let cancel: any;
+    axios({
+      method: "GET",
+      url: `https://api.unsplash.com/photos/${id}/related`,
+      params: {
+        client_id: key_unsplash,
+        per_page: per_page,
+        page: page,
+      },
+      cancelToken: new axios.CancelToken((c) => (cancel = c)),
+    })
+      .then((res) => {
+        setImages(res.data.results);
+        setLoading(false);
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+    return () => cancel();
+  }, [id]);
+
+  return { images, loading };
+}
 
 export function useImage(id: string): {
   image: ImageProps | null;

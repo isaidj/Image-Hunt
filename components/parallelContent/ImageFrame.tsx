@@ -13,18 +13,31 @@ import {
 const ImageFrame = ({
   image,
   loading,
+  fullPage = false,
 }: {
   image: ImageProps;
   loading: boolean;
+  fullPage?: boolean;
 }) => {
   return (
     <>
       <Image
         alt=""
-        src={image.urls.regular}
-        height={600}
-        width={600}
-        className="w-full object-cover  col-span-2 aspect-square"
+        src={fullPage ? image.urls.regular : image.urls.regular}
+        height={image.height}
+        width={image.width}
+        priority={true}
+        placeholder="blur"
+        blurDataURL={image.blur_hash}
+        className={`w-full object-cover  col-span-2  ${
+          fullPage ? "" : "aspect-square cursor-zoom-in"
+        }`}
+        onClick={() => {
+          if (fullPage) {
+            return;
+          }
+          window.location.href = "/photos/" + image.slug;
+        }}
       />
 
       <div className=" p-4 px-6 ">
