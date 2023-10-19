@@ -1,8 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Image Hunt
+
+Image Hunt is a project I created to practice using NextJS, TailwindCSS, and the Unsplash API. In this project, you can search for images and download them, as well as view information about the image and the author.
+I used modals based in routes, Intercepting Routes allows you to load a route from another part of your application within the current layout.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Create and configure a `.env.local` file with the following variables:
+
+```bash
+KEY_UNPLASH=YOUR_KEY
+```
+
+ Run the development server:
 
 ```bash
 npm run dev
