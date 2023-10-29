@@ -36,7 +36,7 @@ const ImageFrame = ({
           if (fullPage) {
             return;
           }
-          window.location.href = "/photos/" + image.slug;
+          window.location.href = "/photos/" + image.slug; //Verificate if its posible to use router push to avoid reload. I dont find a way to do it.
         }}
         unoptimized={true}
       />

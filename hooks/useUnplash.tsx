@@ -1,4 +1,5 @@
 //useImages of unplash
+"use client";
 import { useState, useEffect } from "react";
 
 const key_unsplash = process.env.KEY_UNPLASH;

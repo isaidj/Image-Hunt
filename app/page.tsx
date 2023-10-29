@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useImages } from "@/hooks/useUnplash";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
@@ -8,46 +8,16 @@ import styles from "../components/cards.module.css";
 
 import Nav from "@/components/Nav";
 import ImagesSection from "@/components/sections/ImageSection";
+import { NavBarContext } from "@/context/NavBarContext";
 
 export default function ImageHuntPage() {
   // ----------------State and hooks-------------------------------
-  const searchParams = useSearchParams();
-  const pathName = usePathname();
-  const router = useRouter();
-  const [input, setInput] = useState<string | undefined>(
-    searchParams.get("search") || ""
-  );
-  const [page, setPage] = useState<number>(1);
+
+  const { input, page, setPage, handleTrend } = useContext(NavBarContext);
   const { images, loading, hasMore } = useImages(input, page);
 
-  //------------------Functions----------------------------------
-  const handleSubmmit = (e: any) => {
-    e.preventDefault();
-    const form = new FormData(e.target);
-    const value = form.get("input-text");
-    setInput(value as string);
-
-    //-----actualiza los parametros de la url-----
-    setPage(1);
-    const params = new URLSearchParams();
-    params.append("search", value as string);
-    if (input === "") {
-      params.delete("search");
-    }
-    router.push(`${pathName}?${params.toString()}`);
-  };
-  const handleTrend = (value: string) => {
-    setInput(value);
-    setPage(1);
-    const params = new URLSearchParams();
-    params.append("search", value);
-    router.push(`${pathName}?${params.toString()}`);
-  };
-
-  //------------------Render----------------------------------
   return (
     <main id="imagehunt" className={"flex flex-col space-y-4"}>
-      <Nav input={input} handleSubmmit={handleSubmmit} />
       <div>
         <TendenciasHorizontal onSearch={(value) => handleTrend(value)} />
       </div>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Nav from "@/components/Nav";
+import NavBarContextProvider from "@/context/NavBarContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function Layout(props: {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {props.children} {props.modal}
+        <NavBarContextProvider>
+          {props.children} {props.modal}
+        </NavBarContextProvider>
         <Analytics />
       </body>
     </html>
