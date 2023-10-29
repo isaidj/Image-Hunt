@@ -1,6 +1,7 @@
 import ImageProps from "@/utils/imagePropsInterface";
 import Image from "next/image";
 import Link from "next/link";
+import ImageCard from "./imageCards/ImageCard";
 const ImagesSectionHorizontal = ({
   images,
   loading,
@@ -16,17 +17,18 @@ const ImagesSectionHorizontal = ({
   }
   return images.map((img, index) => {
     return (
-      <Link key={img.id} href={`/photos/${img.slug}`} scroll={false}>
-        <Image
-          src={img.urls.small}
-          className="card mb-3  relative rounded-2xl cursor-pointer animate-fade-in object-cover w-full h-full"
-          alt={img.alt_description}
-          width={img.width}
-          height={img.height}
-          priority={true}
-          placeholder="blur"
-          blurDataURL={img.blur_hash}
-          unoptimized={true}
+      <Link
+        key={img.id}
+        href={`/photos/${img.slug}`}
+        scroll={false}
+        className="relative"
+      >
+        <ImageCard
+          img={img}
+          props={{
+            className:
+              "card mb-3  relative rounded-2xl cursor-pointer animate-fade-in object-cover w-full h-full",
+          }}
         />
       </Link>
     );
