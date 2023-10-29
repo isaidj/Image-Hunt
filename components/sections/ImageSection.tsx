@@ -45,6 +45,7 @@ const ImageCard = ({ img }: { img: ImageProps }) => {
         blurDataURL={img.blur_hash}
         onMouseEnter={() => setDivInfo(true)}
         onMouseLeave={() => setDivInfo(false)}
+        unoptimized={true}
       />
       {divInfo && (
         <div className="absolute bottom-0 left-0 w-full h-auto px-2 bg-gray-900 bg-opacity-50 flex flex-col justify-center items-center pointer-events-none">
@@ -57,6 +58,7 @@ const ImageCard = ({ img }: { img: ImageProps }) => {
                 width={32}
                 priority={false}
                 className="w-full object-cover"
+                unoptimized={true}
               />
             </div>
             <h2 className="text-white text-sm font-bold">{img.user.name}</h2>

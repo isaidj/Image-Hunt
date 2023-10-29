@@ -26,6 +26,7 @@ const ImagesSectionHorizontal = ({
           priority={true}
           placeholder="blur"
           blurDataURL={img.blur_hash}
+          unoptimized={true}
         />
       </Link>
     );
