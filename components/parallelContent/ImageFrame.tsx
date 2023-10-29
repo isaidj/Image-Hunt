@@ -38,6 +38,7 @@ const ImageFrame = ({
           }
           window.location.href = "/photos/" + image.slug;
         }}
+        unoptimized={true}
       />
 
       <div className=" p-4 px-6 ">
@@ -60,6 +61,7 @@ const ImageFrame = ({
                 height={32}
                 width={32}
                 className="w-full object-cover"
+                unoptimized={true}
               />
             </div>
           </div>
