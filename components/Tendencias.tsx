@@ -38,14 +38,14 @@ export const TendenciasHorizontal = ({
     <div
       ref={ref}
       id="scroll_horizontal_menu"
-      className=" flex mt-3 sm:hidden flex-col space-y-4 sm:max-w-xs after:absolute after:content-['.'] after:text-transparent after:right-0 after:w-32 after:bg-gradient-to-r from-transparent to-black after:z-10 overflow-x-scroll scrollbar-hide"
+      className=" flex mt-5 sm:hidden flex-col space-y-4 sm:max-w-xs after:absolute after:content-['.'] after:text-transparent after:right-0 after:w-32 after:bg-gradient-to-r from-transparent to-black after:z-10 overflow-x-scroll scrollbar-hide"
     >
       <div className="flex flex-row items-start gap-7 ml-3">
         {Object.keys(list_tendencias).map((key, index) => (
           <label
             key={index}
             onClick={(e) => {
-              console.log(key);
+              // console.log(key);
               onSearch(key.toLowerCase());
             }}
             className="text-slate-200 border-b-2 border-transparent cursor-pointer whitespace-nowrap  hover:text-gray-400 hover:border-b-2 hover:border-gray-600 transition duration-300"

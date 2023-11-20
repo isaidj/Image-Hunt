@@ -14,7 +14,7 @@ const Nav = ({
       }
     >
       <a
-        className="text-2xl  text-white font-extralight whitespace-nowrap"
+        className="text-xl  text-white font-extralight whitespace-nowrap md:text-2xl"
         href="/"
       >
         Image Hunt
