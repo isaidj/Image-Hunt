@@ -2,6 +2,7 @@
 <a href="https://imagehunt.vercel.app/">
 <img src="preview.png" alt="drawing" width="500" style="margin: auto;"/>
 </a>
+
 Image Hunt is a project I created to practice using NextJS, TailwindCSS, and the Unsplash API. In this project, you can search for images and download them, as well as view information about the image and the author.
 I used modals based in routes, Intercepting Routes allows you to load a route from another part of your application within the current layout.
 
